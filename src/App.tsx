@@ -58,7 +58,7 @@ export default function App() {
 
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY as string;
 
-  const systemPrompt = useMemo(() => `You are a chatbot named ${botConfig.name}, and you ${botConfig.persona}.`, [botConfig]);
+  const systemPrompt = useMemo(() => `I am a chatbot named ${botConfig.name}, and you ${botConfig.persona}.`, [botConfig]);
 
   async function handleSend(userText: string) {
     const trimmed = userText.trim();

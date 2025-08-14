@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from "react";
 import BotConfigForm from "./components/BotConfigForm";
 import LogsPanel from "./components/LogPanel";
+import { MODEL_OPTIONS} from "./components/BotConfigForm";
+import { type ModelKey as ModelKey} from "./components/BotConfigForm";
 import ChatInterface, { type ChatMessage as ChatInterfaceMessage } from "./components/ChatInterface";
 
 type Role = "user" | "assistant" | "system";
@@ -9,7 +11,7 @@ interface ChatMessage {
   content: string;
 }
 
-type ModelKey = "gpt-4o-mini" | "gpt-4o";
+
 
 interface LogEntry {
   timestamp: string;
@@ -18,10 +20,7 @@ interface LogEntry {
   responseSnippet: string;
 }
 
-const MODEL_OPTIONS: { key: ModelKey; label: string }[] = [
-  { key: "gpt-4o-mini", label: "GPT-4o Mini" },
-  { key: "gpt-4o", label: "GPT-4o" },
-];
+
 
 const MAX_LOG_ENTRIES = 5;
 
@@ -49,7 +48,7 @@ async function callOpenAIChat(apiKey: string, model: ModelKey, messages: ChatMes
 }
 
 export default function App() {
-  const [botConfig, setBotConfig] = useState({ name: "Buddy", persona: "a friendly science tutor", model: "gpt-4o-mini" as ModelKey });
+  const [botConfig, setBotConfig] = useState({ name: "Buddy", persona: "a friendly science tutor", model: "gpt-4o" as ModelKey });
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [isSending, setIsSending] = useState(false);
@@ -84,8 +83,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <div className="max-w-6xl mx-auto p-6">
         <header className="mb-6">
-          <h1 className="text-xl font-bold">Your Favorite Chatbot</h1>
-          <p className="text-sm text-gray-600">Configurable bot with chat and logs.</p>
+          <h1 className="text-xl font-bold">Configurable bot with chat and logs.</h1>
           <p className="text-sm text-gray-600">{systemPrompt}</p>
         </header>
 

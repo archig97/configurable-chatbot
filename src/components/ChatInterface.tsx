@@ -28,7 +28,7 @@ export default function ChatInterface({ messages, onSend, isSending }: Props) {
     <div className="rounded-2xl shadow-sm border border-gray-200 p-4 bg-white">
       <h2 className="text-lg font-semibold mb-3">Chat</h2>
       <div className="flex flex-col h-[520px]">
-        <div className="flex-1 overflow-y-auto pr-1">
+        <div className="flex-1 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
           <div className="space-y-3">
             {messages.map((m, i) => (
               <div key={i} className={m.role === "user" ? "text-right" : "text-left"}>
@@ -38,8 +38,8 @@ export default function ChatInterface({ messages, onSend, isSending }: Props) {
             <div ref={chatEndRef} />
           </div>
         </div>
-        <div className="mt-3 flex gap-2">
-          <input className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-white" placeholder="Type your message…" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendClick(); } }} disabled={isSending} />
+        <div className="mt-3 flex gap-2 sticky bottom-0 bg-white pt-2">
+          <input className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-white focu:outline-none focus:ring focus:ring-indigo-200" placeholder="Type your message…" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendClick(); } }} disabled={isSending} />
           <button onClick={handleSendClick} disabled={isSending} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50">{isSending ? "Sending…" : "Send"}</button>
         </div>
       </div>

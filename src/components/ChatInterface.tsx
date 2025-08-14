@@ -39,6 +39,9 @@ export default function ChatInterface({ messages, onSend, isSending, isBotTyping
           <div className="space-y-3">
             {messages.map((m, i) => (
               <div key={i} className={m.role === "user" ? "text-right" : "text-left"}>
+                <div className="text-xs font-semibold text-gray-500 mb-1">
+      {m.role === "user" ? "You" : "Bot"}
+    </div>
                 <div className={`inline-block max-w-[85%] rounded-2xl px-3 py-2 text-sm ${m.role === "user" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-900"}`}>{m.content}</div>
               </div>
             ))}

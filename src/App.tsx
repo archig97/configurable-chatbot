@@ -32,6 +32,8 @@ function nowTimeLabel() {
   return new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 }
 
+
+
 async function callOpenAIChat(apiKey: string, model: ModelKey, messages: ChatMessage[]): Promise<string> {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -52,6 +54,7 @@ export default function App() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [isSending, setIsSending] = useState(false);
+  const [isBotTyping, setIsBotTyping] = useState(false);
 
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY as string;
 
@@ -64,6 +67,7 @@ export default function App() {
     const newMessages = [...messages, { role: "user" as const, content: trimmed }];
     setMessages(newMessages);
     setIsSending(true);
+    setIsBotTyping(true);
     try {
       const responseText = await callOpenAIChat(apiKey, botConfig.model, [{ role: "system", content: systemPrompt }, ...newMessages]);
       const withAssistant = [...newMessages, { role: "assistant" as const, content: responseText }];
@@ -73,7 +77,14 @@ export default function App() {
       setMessages((prev) => [...prev, { role: "assistant", content: `Error: ${err?.message || "failed to get response"}` }]);
     } finally {
       setIsSending(false);
+      setIsBotTyping(false);
     }
+  }
+
+  function handleClearChat(){
+    setMessages([]);
+    setLogs([]);
+    setIsBotTyping(false);
   }
 
   // Cast messages to the type expected by ChatInterface (without "system" role)
@@ -94,7 +105,7 @@ export default function App() {
           </div>
 
           <div className="lg:col-span-2">
-            <ChatInterface messages={filteredMessages} onSend={handleSend} isSending={isSending} />
+            <ChatInterface messages={filteredMessages} onSend={handleSend} isSending={isSending} isBotTyping={isBotTyping} onClearChat={handleClearChat}/>
           </div>
         </div>
       </div>

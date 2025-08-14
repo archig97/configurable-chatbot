@@ -9,7 +9,7 @@ A React + TypeScript chatbot interface powered by the OpenAI API, styled with Ta
 - **Vite 4.1.11** – Fast dev server and build tool  
 - **TypeScript** – Strict typing for better maintainability  
 - **Tailwind CSS 3** – Utility-first CSS styling  
-- **OpenAI API** – GPT-4o / GPT-4o-mini for chatbot responses  
+- **OpenAI API** – GPT-4o / GPT-3.5-turbo for chatbot responses  
 - **Node.js 18** – Runtime environment for local development  
 
 ---

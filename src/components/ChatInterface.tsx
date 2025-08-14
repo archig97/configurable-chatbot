@@ -1,0 +1,48 @@
+import React, { useRef, useEffect, useState } from "react";
+
+export type ChatMessage = {
+    role: "user" | "assistant";
+    content: string;
+  };
+  
+  interface Props {
+    messages: ChatMessage[];
+    onSend: (text: string) => void;
+    isSending: boolean;
+  }
+  
+export default function ChatInterface({ messages, onSend, isSending }: Props) {
+  const chatEndRef = useRef<HTMLDivElement | null>(null);
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  function handleSendClick() {
+    onSend(input);
+    setInput("");
+  }
+
+  return (
+    <div className="rounded-2xl shadow-sm border border-gray-200 p-4 bg-white">
+      <h2 className="text-lg font-semibold mb-3">Chat</h2>
+      <div className="flex flex-col h-[520px]">
+        <div className="flex-1 overflow-y-auto pr-1">
+          <div className="space-y-3">
+            {messages.map((m, i) => (
+              <div key={i} className={m.role === "user" ? "text-right" : "text-left"}>
+                <div className={`inline-block max-w-[85%] rounded-2xl px-3 py-2 text-sm ${m.role === "user" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-900"}`}>{m.content}</div>
+              </div>
+            ))}
+            <div ref={chatEndRef} />
+          </div>
+        </div>
+        <div className="mt-3 flex gap-2">
+          <input className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-white" placeholder="Type your message…" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendClick(); } }} disabled={isSending} />
+          <button onClick={handleSendClick} disabled={isSending} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50">{isSending ? "Sending…" : "Send"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}

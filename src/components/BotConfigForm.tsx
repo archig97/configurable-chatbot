@@ -39,11 +39,12 @@ export default function BotConfigForm({ botConfig, setBotConfig, isMock }: Props
       </label>
       <label className="block">
         <span className="block text-sm text-gray-700 mb-1">Model</span>
-        <select className="w-full rounded-lg border border-gray-300 px-3 py-2 text-black bg-white dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.model} onChange={(e) => setLocalConfig((c) => ({ ...c, model: e.target.value as ModelKey }))}>
+        <select className="w-full rounded-lg border border-gray-300 px-3 pr-10 py-2 text-black bg-white dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.model} onChange={(e) => setLocalConfig((c) => ({ ...c, model: e.target.value as ModelKey }))}>
           {MODEL_OPTIONS.map((m) => (
             <option key={m.key} value={m.key}>{m.label}</option>
           ))}
         </select>
+       
       </label>
       <div className="text-xs text-gray-500 mt-2">API mode: {isMock ? "Mock" : "Live"}</div>
 

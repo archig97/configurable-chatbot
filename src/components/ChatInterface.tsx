@@ -34,7 +34,7 @@ export default function ChatInterface({ messages, onSend, isSending, isBotTyping
   <h2 className="text-lg font-semibold">Chat</h2>
   <button
     onClick={onClearChat}
-    className="text-xs text-red-500 hover:text-red-700 transition-colors"
+    className="text-xs text-red-500 bg-black hover:text-red-700 transition-colors"
   >
     Clear Chat
   </button>

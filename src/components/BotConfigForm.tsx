@@ -31,15 +31,15 @@ export default function BotConfigForm({ botConfig, setBotConfig, isMock }: Props
       <h2 className="text-lg font-semibold mb-2 text-gray-800">Bot Config</h2>
       <label className="block">
         <span className="block text-sm text-gray-700 mb-1">Bot Name</span>
-        <input className="w-full rounded-lg border border-gray-300 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.name} onChange={(e) => setLocalConfig((c) => ({ ...c, name: e.target.value }))} />
+        <input className="w-full rounded-lg border border-gray-300 px-3 py-2 text-black bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.name} onChange={(e) => setLocalConfig((c) => ({ ...c, name: e.target.value }))} />
       </label>
       <label className="block">
         <span className="block text-sm text-gray-700 mb-1">Persona</span>
-        <textarea className="w-full rounded-lg border border-gray-300 px-3 py-2 min-h-[80px] text-white focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.persona} onChange={(e) => setLocalConfig((c) => ({ ...c, persona: e.target.value }))} />
+        <textarea className="w-full rounded-lg border border-gray-300 text-black bg-white px-3 py-2 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.persona} onChange={(e) => setLocalConfig((c) => ({ ...c, persona: e.target.value }))} />
       </label>
       <label className="block">
         <span className="block text-sm text-gray-700 mb-1">Model</span>
-        <select className="w-full rounded-lg border border-gray-300 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.model} onChange={(e) => setLocalConfig((c) => ({ ...c, model: e.target.value as ModelKey }))}>
+        <select className="w-full rounded-lg border border-gray-300 px-3 py-2 text-black bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400" value={localConfig.model} onChange={(e) => setLocalConfig((c) => ({ ...c, model: e.target.value as ModelKey }))}>
           {MODEL_OPTIONS.map((m) => (
             <option key={m.key} value={m.key}>{m.label}</option>
           ))}

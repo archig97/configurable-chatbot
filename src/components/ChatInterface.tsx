@@ -66,7 +66,7 @@ export default function ChatInterface({ messages, onSend, isSending, isBotTyping
           </div>
         </div>
         <div className="mt-3 flex gap-2 sticky bottom-0 bg-white pt-2">
-          <input className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-white focu:outline-none focus:ring focus:ring-indigo-200" placeholder="Type your message…" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendClick(); } }} disabled={isSending} />
+          <input className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-black bg-white focu:outline-none focus:ring focus:ring-indigo-200" placeholder="Type your message…" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendClick(); } }} disabled={isSending} />
           <button onClick={handleSendClick} disabled={isSending} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50">{isSending ? "Sending…" : "Send"}</button>
         </div>
       </div>

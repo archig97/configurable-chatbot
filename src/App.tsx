@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import  { useMemo, useState } from "react";
 import BotConfigForm from "./components/BotConfigForm";
 import LogsPanel from "./components/LogPanel";
 import { MODEL_OPTIONS} from "./components/BotConfigForm";
